@@ -1,2 +1,2 @@
-print(newFile);
-print(addCommit);
+print("Это моя первая программа")
+print("Привет программист!")
