@@ -15,11 +15,11 @@ if inputUser == 'y':
     print("  [3] - показать список запущенных процессов")
     inputUser = input("Выберите возможность: ")
     if inputUser == '1':
-        print(os.listdir())
+        print("Список файлов: ", os.listdir())
     elif inputUser == '2':
         pass
     elif inputUser == '3':
-        print(psutil.pids())
+        print("Список процессов: ", psutil.pids())
     else:
         print("Неверный ввод")
 elif inputUser == 'n':
