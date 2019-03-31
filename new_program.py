@@ -13,12 +13,12 @@ if inputUser == 'y':
     print("  [1] - вывести список файлов текущей директории")
     print("  [2] - вывести информацию о системе")
     print("  [3] - показать список запущенных процессов")
-    inputUser = int(input("Выберите возможность: "))
-    if inputUser == 1:
+    inputUser = input("Выберите возможность: ")
+    if inputUser == '1':
         print(os.listdir())
-    elif inputUser == 2:
+    elif inputUser == '2':
         pass
-    elif inputUser == 3:
+    elif inputUser == '3':
         print(psutil.pids())
     else:
         print("Неверный ввод")
