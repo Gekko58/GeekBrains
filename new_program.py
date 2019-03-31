@@ -17,7 +17,11 @@ if inputUser == 'y':
     if inputUser == '1':
         print("Список файлов: ", os.listdir())
     elif inputUser == '2':
-        pass
+        print("Текущая директория: ", os.getcwd())
+        print("Операционная система: ", os.uname())
+        print("Кодировка файловой системы: ", psutil.sys.getfilesystemencoding())
+        print("Пользователь: ", os.getlogin())
+        print("Количество процессоров: ", psutil.cpu_count())
     elif inputUser == '3':
         print("Список процессов: ", psutil.pids())
     else:
