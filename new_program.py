@@ -1,5 +1,6 @@
 import os
 import psutil
+import sys
 
 print("Это моя первая программа")
 print("Привет программист!")
@@ -18,8 +19,8 @@ if inputUser == 'y':
         print("Список файлов: ", os.listdir())
     elif inputUser == '2':
         print("Текущая директория: ", os.getcwd())
-        print("Операционная система: ", os.uname())
-        print("Кодировка файловой системы: ", psutil.sys.getfilesystemencoding())
+        print("Операционная система: ", sys.platform)
+        print("Кодировка файловой системы: ", sys.getfilesystemencoding())
         print("Пользователь: ", os.getlogin())
         print("Количество процессоров: ", psutil.cpu_count())
     elif inputUser == '3':
