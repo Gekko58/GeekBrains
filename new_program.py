@@ -18,6 +18,7 @@ if inputUser == 'y':
         print("  [3] - показать список запущенных процессов")
         print("  [4] - дублирование файлов в текущей директории")
         print("  [5] - копирование указанного файла")
+        print("  [6] - удалить дубликаты файлов в указанной директории")
         print("  [q] - выход")
         inputUser = input("Выберите возможность: ")
         if inputUser == '1':
@@ -40,11 +41,21 @@ if inputUser == 'y':
                     shutil.copy(file_list[i], new_name_file) #Копируем
         elif inputUser == '5':
             name_file = input("Введите имя файла: ") #Получаем имя файла от пользователя
-            if os.path.isfile(name_file): #Проверяем. что он есть
+            if os.path.isfile(name_file): #Проверяем. что он есть и это файл
                 new_name_file = name_file + ".dupl"
                 shutil.copy(name_file, new_name_file)
             else:
                 print("Не верное имя файла")
+        elif inputUser == '6':
+            name_dir = input("Введите имя директории: ")
+            if os.path.isdir(name_dir):
+                file_list = os.listdir(name_dir)
+                for i in range(0, len(file_list), 1):
+                    full_name = os.path.join(name_dir, file_list[i])
+                    if full_name.endswith(".dupl"):
+                        os.remove(full_name)
+            else:
+                print("Нет такой директории")
         else:
             print("Неверный ввод")
 elif inputUser == 'n' or inputUser == 'q':
