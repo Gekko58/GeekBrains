@@ -17,6 +17,7 @@ if inputUser == 'y':
         print("  [2] - вывести информацию о системе")
         print("  [3] - показать список запущенных процессов")
         print("  [4] - дублирование файлов в текущей директории")
+        print("  [5] - копирование указанного файла")
         print("  [q] - выход")
         inputUser = input("Выберите возможность: ")
         if inputUser == '1':
@@ -37,6 +38,13 @@ if inputUser == 'y':
                 if os.path.isfile(file_list[i]): #Проверяем, что это файл
                     new_name_file = file_list[i] + ".dupl" #Формируем новое имя
                     shutil.copy(file_list[i], new_name_file) #Копируем
+        elif inputUser == '5':
+            name_file = input("Введите имя файла: ") #Получаем имя файла от пользователя
+            if os.path.isfile(name_file): #Проверяем. что он есть
+                new_name_file = name_file + ".dupl"
+                shutil.copy(name_file, new_name_file)
+            else:
+                print("Не верное имя файла")
         else:
             print("Неверный ввод")
 elif inputUser == 'n' or inputUser == 'q':
