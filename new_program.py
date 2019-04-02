@@ -3,6 +3,14 @@ import psutil
 import sys
 import shutil
 
+def duplicate_file(file_list):
+    for i in file_list:  # Получаем список файлов и папкок
+        if os.path.isfile(i):  # Проверяем, что это файл
+            new_name_file = i + ".dupl"  # Формируем новое имя
+            shutil.copy(i, new_name_file)  # Копируем
+        else:
+            print("Неверное имя файла")
+
 print("Это моя первая программа")
 print("Привет программист!")
 
@@ -35,17 +43,10 @@ if inputUser == 'y':
             print("До новых встреч")
         elif inputUser == '4':
             file_list = os.listdir()
-            for i in range(0, len(file_list), 1): #Получаем список файлов и папкок
-                if os.path.isfile(file_list[i]): #Проверяем, что это файл
-                    new_name_file = file_list[i] + ".dupl" #Формируем новое имя
-                    shutil.copy(file_list[i], new_name_file) #Копируем
+            duplicate_file(file_list)
         elif inputUser == '5':
-            name_file = input("Введите имя файла: ") #Получаем имя файла от пользователя
-            if os.path.isfile(name_file): #Проверяем. что он есть и это файл
-                new_name_file = name_file + ".dupl"
-                shutil.copy(name_file, new_name_file)
-            else:
-                print("Не верное имя файла")
+            file_list = input("Введите имя файла: ").split() #Получаем имя файла от пользователя
+            duplicate_file(file_list)
         elif inputUser == '6':
             name_dir = input("Введите имя директории: ")
             if os.path.isdir(name_dir):
