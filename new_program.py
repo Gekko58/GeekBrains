@@ -8,6 +8,10 @@ def duplicate_file(file_list): #Функция содаёт дубликаты �
         if os.path.isfile(i):  # Проверяем, что это файл
             new_name_file = i + ".dupl"  # Формируем новое имя
             shutil.copy(i, new_name_file)  # Копируем
+            if os.path.exists(new_name_file):
+                print("Файл", new_name_file, "успешно создан")
+            else:
+                print("Не могу создать файл или это папка")
         else:
             print("Неверное имя файла")
 
@@ -19,7 +23,11 @@ def delete_dublicate(name_folder): #Функция удаляет дублика
             full_name = os.path.join(name_dir, i)
             if i.endswith(".dupl"):
                 os.remove(full_name)
-                number_del_file = number_del_file + 1
+                if not os.path.exists(full_name):
+                    number_del_file += 1
+                    print("Файл", full_name, "успешно удалён")
+                else:
+                    print("Невозможно удалить файл")
         return "Количество удалённых файлов: " + str(number_del_file)
     else:
         return "Не верно указана директория"
