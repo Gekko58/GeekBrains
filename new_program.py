@@ -3,13 +3,26 @@ import psutil
 import sys
 import shutil
 
-def duplicate_file(file_list):
+def duplicate_file(file_list): #Функция содаёт дубликаты файлов
     for i in file_list:  # Получаем список файлов и папкок
         if os.path.isfile(i):  # Проверяем, что это файл
             new_name_file = i + ".dupl"  # Формируем новое имя
             shutil.copy(i, new_name_file)  # Копируем
         else:
             print("Неверное имя файла")
+
+def delete_dublicate(name_folder): #Функция удаляет дубликаты файлов из указанной директории
+    if os.path.isdir(name_folder):
+        number_del_file = 0
+        file_list = os.listdir(name_folder)
+        for i in file_list:
+            full_name = os.path.join(name_dir, i)
+            if i.endswith(".dupl"):
+                os.remove(full_name)
+                number_del_file = number_del_file + 1
+        return "Количество удалённых файлов: " + str(number_del_file)
+    else:
+        return "Не верно указана директория"
 
 print("Это моя первая программа")
 print("Привет программист!")
@@ -49,14 +62,8 @@ if inputUser == 'y':
             duplicate_file(file_list)
         elif inputUser == '6':
             name_dir = input("Введите имя директории: ")
-            if os.path.isdir(name_dir):
-                file_list = os.listdir(name_dir)
-                for i in range(0, len(file_list), 1):
-                    full_name = os.path.join(name_dir, file_list[i])
-                    if full_name.endswith(".dupl"):
-                        os.remove(full_name)
-            else:
-                print("Нет такой директории")
+            answer_string = delete_dublicate(name_dir)
+            print(answer_string)
         else:
             print("Неверный ввод")
 elif inputUser == 'n' or inputUser == 'q':
